@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Posts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Resume</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>Auteur</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
+                <td>{{ post.titre }}</td>
+                <td>{{ post.resume }}</td>
+                <td>{{ post.contenu }}</td>
+                <td>{% if post.date %}{{ post.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ post.auteur }}</td>
+                <td>{{ post.image }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('post_show', { 'id': post.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('post_edit', { 'id': post.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('post_new') }}">Create a new post</a>
+        </li>
+    </ul>
+    {% for flash in app.session.flashBag.get('notice') %}
+    <div id="notice" class="notice alert alert-notice">
+        {{ flash }}
+    </div>
+    {% endfor %}
+{% endblock %}

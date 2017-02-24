@@ -1,0 +1,29 @@
+IKNSA\BlogBundle\Entity\Post:
+    type: entity
+    table: null
+    repositoryClass: IKNSA\BlogBundle\Repository\PostRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        summary:
+            type: string
+            length: 255
+            nullable: true
+        content:
+            type: text
+            length: 255
+        createdAt:
+            type: datetime
+        user:
+            type: string
+            length: 255
+        extension:
+            type: string
+            length: 255
